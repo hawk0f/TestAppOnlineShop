@@ -59,13 +59,6 @@ class CatalogFragment : Fragment()
             }
         }
 
-        viewModel.updatedItem.observe(viewLifecycleOwner) {
-            it?.let {
-                adapter.notifyItemChanged(it)
-                viewModel.onFavouriteItemUpdated()
-            }
-        }
-
         binding.tagsGroup.setOnCheckedStateChangeListener { group, checkedIds ->
             binding.sortItemsMenu.setText("")
             for (i in group.children)

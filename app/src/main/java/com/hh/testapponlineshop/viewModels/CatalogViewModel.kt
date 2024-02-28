@@ -26,10 +26,6 @@ class CatalogViewModel(private val loadItemsUseCase: LoadItemsUseCase, private v
     val filteredList: LiveData<List<ItemUI>?>
         get() = _filteredList
 
-    private val _updatedItem: MutableLiveData<Int?> = MutableLiveData(null)
-    val updatedItem: LiveData<Int?>
-        get() = _updatedItem
-
     private val _itemClicked: MutableLiveData<ItemUI?> = MutableLiveData(null)
     val itemClicked: LiveData<ItemUI?>
         get() = _itemClicked
@@ -110,13 +106,8 @@ class CatalogViewModel(private val loadItemsUseCase: LoadItemsUseCase, private v
         }
         viewModelScope.launch {
             updateUserFavouriteList.execute(session.getCurrentUser()).collect {
-                _updatedItem.value = _itemsUi.value!!.indexOf(item)
+                _filteredList.value = _filteredList.value
             }
         }
-    }
-
-    fun onFavouriteItemUpdated()
-    {
-        _updatedItem.value = null
     }
 }
