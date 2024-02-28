@@ -89,7 +89,7 @@ class RegistrationFragment : Fragment()
 
             override fun onTextFormatted(watcher: FormatWatcher?, phoneNumber: String?)
             {
-                if (phoneNumber?.length == 16 && isCyrillicOnly(viewModel.surname) && isCyrillicOnly(viewModel.name))
+                if (phoneNumber?.last() != '*' && isCyrillicOnly(viewModel.surname) && isCyrillicOnly(viewModel.name))
                 {
                     binding.enterButton.isEnabled = true
                 }
