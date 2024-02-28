@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="item"
+            type="com.hh.testapponlineshop.models.ItemUI" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:backgroundTint="@color/white"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/view_pager"
+                android:layout_width="match_parent"
+                android:layout_height="150dp" />
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tab_layout"
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:layout_below="@id/view_pager"
+                android:layout_centerHorizontal="true"
+                android:background="@android:color/transparent"
+                app:tabBackground="@drawable/view_pager_tab_selector_catalog"
+                app:tabGravity="center"
+                android:focusableInTouchMode="false"
+                app:tabIndicator="@null"
+                app:tabMode="fixed" />
+
+            <ImageView
+                android:id="@+id/button_favorite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@id/view_pager"
+                android:layout_alignEnd="@id/view_pager"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:background="?android:attr/selectableItemBackground"
+                android:src="@{(item.favourite == true) ? @drawable/favourite_check_icon : @drawable/favourite_uncheck_icon}"
+                android:importantForAccessibility="no" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tab_layout"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/old_price_tv"
+                    style="@style/ElementText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="10dp"
+                    android:foreground="@drawable/strike_effect_grey"
+                    android:gravity="center_vertical"
+                    android:text='@{item.price.price + " " + item.price.unit}'
+                    android:textColor="@color/grey"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/new_price_tv"
+                        style="@style/Title2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="5dp"
+                        android:gravity="center_vertical"
+                        android:text='@{item.price.priceWithDiscount + " " + item.price.unit}'
+                        android:textColor="@color/black"
+                        android:textStyle="bold" />
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:backgroundTint="@color/pink"
+                        app:cardCornerRadius="5dp"
+                        app:strokeWidth="0dp">
+
+                        <TextView
+                            style="@style/ElementText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:paddingHorizontal="10dp"
+                            android:text='@{"-" + item.price.discount + "%"}'
+                            android:textColor="@color/white" />
+                    </com.google.android.material.card.MaterialCardView>
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/text_title"
+                    style="@style/Title3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="10dp"
+                    android:text="@{item.title}"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/text_description"
+                    style="@style/Caption1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginTop="5dp"
+                    android:lines="3"
+                    android:text="@{item.subtitle}"
+                    android:textColor="@color/dark_grey" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp">
+
+                    <TextView
+                        android:id="@+id/rating_value"
+                        style="@style/ElementText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="5dp"
+                        android:gravity="center_vertical"
+                        android:text="@{String.valueOf(item.feedback.rating)}"
+                        android:textColor="@color/orange"
+                        app:drawableStartCompat="@drawable/star_icon" />
+
+                    <TextView
+                        style="@style/ElementText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text='@{"(" + item.feedback.count + ")"}'
+                        android:textColor="@color/grey" />
+                </LinearLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    style="@style/Widget.Material3.Button.IconButton.Filled"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:background="@drawable/button_buy_custom_corners"
+                    app:icon="@drawable/plus_buy_btn" />
+            </LinearLayout>
+        </RelativeLayout>
+    </com.google.android.material.card.MaterialCardView>
+</layout>

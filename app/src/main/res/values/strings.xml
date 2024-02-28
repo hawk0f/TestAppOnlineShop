@@ -1,0 +1,48 @@
+<resources>
+    <string name="app_name">Online Shop</string>
+    <string name="right_arrow_content_description">Right arrow button</string>
+    <string name="refund_product_text">Возврат товара</string>
+    <string name="refund_icon_content_description">refund_icon</string>
+    <string name="offer_icon_content_description">offer_icon</string>
+    <string name="offer_text">Оферта</string>
+    <string name="feedback_icon_content_description">feedback_icon</string>
+    <string name="feedback_text">Обратная связь</string>
+    <string name="shop_icon_content_description">shop_icon</string>
+    <string name="shops_text">Магазины</string>
+    <string name="favourite_icon_content_description">favourite_icon</string>
+    <string name="favourite_text">Избранное</string>
+    <string name="profile_icon_content_description">profile_icon</string>
+    <string name="log_out_button_content_description">Log out button</string>
+    <string name="info_text_loyal_program_terms">Нажимая кнопку \"Войти\", Вы принимаете\n<u>условия программы лояльности</u></string>
+    <string name="hint_sort_menu">По популярности</string>
+    <string name="main_text">Главная</string>
+    <string name="catalog_text">Каталог</string>
+    <string name="basket_text">Корзина</string>
+    <string name="sales_text">Акции</string>
+    <string name="profile_text">Профиль</string>
+    <string name="brands_text">Бренды</string>
+    <string name="Filters_text">Фильтры</string>
+    <string name="watch_all_text">Смотреть все</string>
+    <string name="face_text">Лицо</string>
+    <string name="body_text">Тело</string>
+    <string name="suntan_text">Загар</string>
+    <string name="mask_text">Маски</string>
+    <string name="description_text">Описание</string>
+    <string name="hide_text">Скрыть</string>
+    <string name="info_text">Характеристики</string>
+    <string name="ingredients_text">Состав</string>
+    <string name="show_info_text">Подробнее</string>
+    <string name="add_to_basket_text">Добавить в корзину</string>
+    <string name="products_text">Товары</string>
+    <string name="logout_text">Выйти</string>
+    <string name="name_text">Имя</string>
+    <string name="surname_text">Фамилия</string>
+    <string name="phonenumber_text">Номер телефона</string>
+    <string name="login_text">Войти</string>
+    <string name="no_favourites_items_text">Избранные товары отсутствуют!</string>
+    <string-array name="sort_menu_items">
+        <item>По популярности</item>
+        <item>По уменьшению цены</item>
+        <item>По возрастанию цены</item>
+    </string-array>
+</resources>

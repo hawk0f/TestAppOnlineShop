@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav_graph"
+    app:startDestination="@id/registrationFragment">
+
+    <fragment
+        android:id="@+id/registrationFragment"
+        android:name="com.hh.testapponlineshop.views.mainFragments.RegistrationFragment"
+        android:label="Вход"
+        tools:layout="@layout/fragment_registration">
+        <action
+            android:id="@+id/action_registrationFragment_to_mainContentFragment"
+            app:destination="@id/mainContentFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mainContentFragment"
+        android:name="com.hh.testapponlineshop.views.mainFragments.MainContentFragment"
+        android:label="Главная"
+        tools:layout="@layout/fragment_main_content">
+        <action
+            android:id="@+id/action_mainContentFragment_to_registrationFragment"
+            app:destination="@id/registrationFragment" />
+        <argument
+            android:name="startDestination"
+            app:argType="reference" />
+    </fragment>
+    <action
+        android:id="@+id/action_global_registrationFragment"
+        app:destination="@id/registrationFragment" />
+</navigation>

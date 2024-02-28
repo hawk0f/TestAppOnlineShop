@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.hh.testapponlineshop.viewModels.CatalogItemInfoViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="16dp"
+        android:background="@color/white"
+        android:orientation="vertical"
+        tools:context=".views.contentFragments.CatalogItemInfoFragment">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:scrollbarAlwaysDrawVerticalTrack="false">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/view_pager"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp" />
+
+                <ImageView
+                    android:id="@+id/button_favorite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/view_pager"
+                    android:layout_alignEnd="@id/view_pager"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:importantForAccessibility="no"
+                    android:onClick="@{() -> vm.onFavouriteClick()}"
+                    android:src='@{(vm.favourite == true) ? @drawable/favourite_check_icon : @drawable/favourite_uncheck_icon}' />
+
+                <ImageView
+                    android:id="@+id/button_question"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@id/view_pager"
+                    android:layout_alignBottom="@id/view_pager"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:importantForAccessibility="no"
+                    app:srcCompat="@drawable/question_icon" />
+
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tab_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    android:layout_below="@id/view_pager"
+                    android:layout_centerHorizontal="true"
+                    android:background="@android:color/transparent"
+                    android:focusableInTouchMode="false"
+                    app:tabBackground="@drawable/view_pager_tab_selector_catalog"
+                    app:tabGravity="center"
+                    app:tabIndicator="@null"
+                    app:tabMode="fixed" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tab_layout"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/title_tv"
+                        style="@style/Title1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="@{vm.title}"
+                        android:textColor="@color/grey"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/subtitle_tv"
+                        style="@style/LargeTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center_vertical"
+                        android:text="@{vm.subtitle}"
+                        android:textColor="@color/black"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/available_amount"
+                        style="@style/Text1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center_vertical"
+                        android:text="@{vm.available}"
+                        android:textColor="@color/grey" />
+
+                    <com.google.android.material.divider.MaterialDivider
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp">
+
+                        <RatingBar
+                            android:id="@+id/rating_bar"
+                            style="@style/Widget.AppCompat.RatingBar.Small"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:isIndicator="true"
+                            android:max="5"
+                            android:numStars="5"
+                            android:progressBackgroundTint="@color/orange"
+                            android:progressTint="@color/orange"
+                            android:rating="@{vm.ratingValue}"
+                            android:stepSize="0.5" />
+
+                        <TextView
+                            android:id="@+id/rating_value"
+                            style="@style/Text1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginEnd="5dp"
+                            android:gravity="center_vertical"
+                            android:text="@{vm.ratingAndFeedback}"
+                            android:textColor="@color/grey" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:id="@+id/new_price_tv"
+                            style="@style/PriceText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="10dp"
+                            android:gravity="center_vertical"
+                            android:text="@{vm.newPrice}"
+                            android:textColor="@color/black"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/old_price_tv"
+                            style="@style/Text1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="10dp"
+                            android:foreground="@drawable/strike_effect_grey"
+                            android:text="@{vm.oldPrice}"
+                            android:textColor="@color/grey" />
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:backgroundTint="@color/pink"
+                            app:cardCornerRadius="5dp"
+                            app:strokeWidth="0dp">
+
+                            <TextView
+                                android:id="@+id/discount_percent_tv"
+                                style="@style/ElementText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:gravity="center_vertical"
+                                android:paddingHorizontal="8dp"
+                                android:paddingVertical="3dp"
+                                android:text="@{vm.discount}"
+                                android:textColor="@color/white" />
+                        </com.google.android.material.card.MaterialCardView>
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/description"
+                        style="@style/Title1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:text="@string/description_text"
+                        android:textColor="@color/black"
+                        android:textStyle="bold" />
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/brand_card"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="10dp"
+                        app:cardBackgroundColor="@color/light_grey"
+                        app:cardCornerRadius="8dp"
+                        app:strokeWidth="0dp">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:paddingHorizontal="10dp"
+                            android:paddingVertical="10dp">
+
+                            <TextView
+                                android:id="@+id/brand_text"
+                                style="@style/Title2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@{vm.title}"
+                                android:textColor="@color/black"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:contentDescription="@string/right_arrow_content_description"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:srcCompat="@drawable/right_arrow_icon" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <TextView
+                        android:id="@+id/description_text"
+                        style="@style/Text1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:breakStrategy="simple"
+                        android:text="@{vm.description}"
+                        android:textColor="@color/dark_grey" />
+
+                    <TextView
+                        android:id="@+id/tv_hide_or_show_description"
+                        style="@style/ButtonText1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="20dp"
+                        android:text="@string/hide_text"
+                        android:textColor="@color/grey" />
+
+                    <TextView
+                        android:id="@+id/info"
+                        style="@style/Title1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="15dp"
+                        android:text="@string/info_text"
+                        android:textColor="@color/black"
+                        android:textStyle="bold" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recycler_info"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        tools:listitem="@layout/info_item" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginBottom="10dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/ingredients"
+                            style="@style/Title1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/ingredients_text"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="end"
+                            android:importantForAccessibility="no"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/copy_icon" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <com.hh.testapponlineshop.customViews.LayoutedTextView
+                        android:id="@+id/ingredients_text"
+                        style="@style/Text1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:ellipsize="end"
+                        android:text="@{vm.ingredients}"
+                        android:textColor="@color/dark_grey" />
+
+                    <TextView
+                        android:id="@+id/tv_hide_or_show_ingredients"
+                        style="@style/ButtonText1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="20dp"
+                        android:text="@string/show_info_text"
+                        android:textColor="@color/grey" />
+                </LinearLayout>
+            </RelativeLayout>
+        </ScrollView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/btn_add_to_basket"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:backgroundTint="@color/pink"
+            app:cardCornerRadius="10dp"
+            app:strokeWidth="0dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="15dp">
+
+                <TextView
+                    android:id="@+id/new_price_tv_btn"
+                    style="@style/ButtonText2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:text="@{vm.newPrice}"
+                    android:textColor="@color/white" />
+
+                <TextView
+                    android:id="@+id/old_price_tv_btn"
+                    style="@style/Caption1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:foreground="@drawable/strike_effect_pink"
+                    android:text="@{vm.oldPrice}"
+                    android:textColor="@color/light_pink" />
+
+                <TextView
+                    style="@style/ButtonText2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:text="@string/add_to_basket_text"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+    </LinearLayout>
+</layout>
