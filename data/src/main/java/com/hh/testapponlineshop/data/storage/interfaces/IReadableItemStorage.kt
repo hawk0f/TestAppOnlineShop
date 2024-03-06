@@ -4,9 +4,9 @@ import com.hh.testapponlineshop.domain.models.ItemDomain
 import kotlinx.coroutines.flow.Flow
 import java.util.UUID
 
-interface ReadOnlyItemStorage
+interface IReadableItemStorage
 {
-    suspend fun loadItems() : Flow<List<ItemDomain>>
+    suspend fun getItems() : Flow<List<ItemDomain>>
 
-    suspend fun getItem(id: UUID): Flow<ItemDomain>
+    suspend fun getItemById(id: UUID): Flow<ItemDomain>
 }

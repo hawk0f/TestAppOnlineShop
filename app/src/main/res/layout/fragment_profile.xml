@@ -348,7 +348,7 @@
             android:backgroundTint="@color/light_grey"
             android:onClick="@{() -> viewModel.onLogoutClick()}"
             android:padding="15dp"
-            android:text="@string/logout_text"
+            android:text="@string/delete_acc"
             android:textColor="@color/black"
             app:cornerRadius="8dp"
             app:layout_constraintBottom_toBottomOf="parent"

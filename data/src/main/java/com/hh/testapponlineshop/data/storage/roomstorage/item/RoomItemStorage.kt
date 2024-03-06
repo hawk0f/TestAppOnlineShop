@@ -2,19 +2,19 @@ package com.hh.testapponlineshop.data.storage.roomstorage.item
 
 import com.hh.testapponlineshop.data.storage.roomstorage.item.models.toDomain
 import com.hh.testapponlineshop.data.storage.roomstorage.item.models.toRoom
-import com.hh.testapponlineshop.data.storage.interfaces.ReadWriteItemStorage
+import com.hh.testapponlineshop.data.storage.interfaces.IReadableWritableItemStorage
 import com.hh.testapponlineshop.domain.models.ItemDomain
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import java.util.UUID
 
-class RoomItemStorage(private val itemDao: ItemDao) : ReadWriteItemStorage
+class RoomItemStorage(private val itemDao: ItemDao) : IReadableWritableItemStorage
 {
-    override suspend fun loadItems(): Flow<List<ItemDomain>> = flow {
+    override suspend fun getItems(): Flow<List<ItemDomain>> = flow {
         emit(itemDao.getItems().map { it.toDomain() })
     }
 
-    override suspend fun getItem(id: UUID): Flow<ItemDomain> = flow {
+    override suspend fun getItemById(id: UUID): Flow<ItemDomain> = flow {
         emit(itemDao.getItemByItemId(id).toDomain())
     }
 

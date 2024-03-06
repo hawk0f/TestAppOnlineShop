@@ -4,7 +4,7 @@ import com.hh.testapponlineshop.domain.models.UserDomain
 import kotlinx.coroutines.flow.Flow
 import java.util.UUID
 
-interface ReadWriteUserStorage
+interface IReadableWritableUserStorage
 {
     suspend fun getUsers(): Flow<List<UserDomain>>
 
@@ -16,7 +16,7 @@ interface ReadWriteUserStorage
 
     suspend fun insertUser(user: UserDomain): Flow<Unit>
 
-    suspend fun updateUserFavourites(user: UserDomain): Flow<Unit>
+    suspend fun updateUser(user: UserDomain): Flow<Unit>
 
     suspend fun deleteUser(user: UserDomain): Flow<Unit>
 }

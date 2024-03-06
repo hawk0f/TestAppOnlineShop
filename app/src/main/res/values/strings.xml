@@ -34,7 +34,7 @@
     <string name="show_info_text">Подробнее</string>
     <string name="add_to_basket_text">Добавить в корзину</string>
     <string name="products_text">Товары</string>
-    <string name="logout_text">Выйти</string>
+    <string name="delete_acc">Удалить аккаунт</string>
     <string name="name_text">Имя</string>
     <string name="surname_text">Фамилия</string>
     <string name="phonenumber_text">Номер телефона</string>

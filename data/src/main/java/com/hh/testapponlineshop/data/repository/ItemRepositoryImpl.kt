@@ -1,22 +1,22 @@
 package com.hh.testapponlineshop.data.repository
 
-import com.hh.testapponlineshop.data.storage.interfaces.ReadOnlyItemStorage
-import com.hh.testapponlineshop.data.storage.interfaces.ReadWriteItemStorage
+import com.hh.testapponlineshop.data.storage.interfaces.IReadableItemStorage
+import com.hh.testapponlineshop.data.storage.interfaces.IReadableWritableItemStorage
 import com.hh.testapponlineshop.domain.models.ItemDomain
 import com.hh.testapponlineshop.domain.repository.ItemRepository
 import kotlinx.coroutines.flow.Flow
 
-class ItemsRepositoryImpl(private val itemStorage: ReadOnlyItemStorage, private val writableItemStorage: ReadWriteItemStorage) : ItemRepository
+class ItemRepositoryImpl(private val itemStorage: IReadableItemStorage, private val writableItemStorage: IReadableWritableItemStorage) : ItemRepository
 {
 
     override suspend fun getItemsFromServer(): Flow<List<ItemDomain>>
     {
-        return itemStorage.loadItems()
+        return itemStorage.getItems()
     }
 
     override suspend fun getItemsFromDatabase(): Flow<List<ItemDomain>>
     {
-        return writableItemStorage.loadItems()
+        return writableItemStorage.getItems()
     }
 
     override suspend fun insertAll(items: List<ItemDomain>)

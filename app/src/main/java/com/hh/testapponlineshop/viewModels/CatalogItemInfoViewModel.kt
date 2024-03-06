@@ -6,11 +6,11 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.hh.testapponlineshop.Session
-import com.hh.testapponlineshop.domain.usecases.UpdateUserFavouriteList
+import com.hh.testapponlineshop.domain.usecases.UpdateUserUseCase
 import com.hh.testapponlineshop.models.ItemUI
 import kotlinx.coroutines.launch
 
-class CatalogItemInfoViewModel(private val session: Session, private val updateUserFavouriteList: UpdateUserFavouriteList) : ViewModel()
+class CatalogItemInfoViewModel(private val session: Session, private val updateUserUseCase: UpdateUserUseCase) : ViewModel()
 {
     private lateinit var itemUI: ItemUI
 
@@ -57,7 +57,7 @@ class CatalogItemInfoViewModel(private val session: Session, private val updateU
             session.getCurrentUser().favourites = session.getCurrentUser().favourites.plus(itemUI.id.toString())
         }
         viewModelScope.launch {
-            updateUserFavouriteList.execute(session.getCurrentUser()).collect {
+            updateUserUseCase.execute(session.getCurrentUser()).collect {
                 _updateFavouriteIcon.value = true
             }
         }

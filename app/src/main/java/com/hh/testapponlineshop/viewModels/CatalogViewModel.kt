@@ -7,12 +7,12 @@ import androidx.lifecycle.viewModelScope
 import com.hh.testapponlineshop.Session
 import com.hh.testapponlineshop.domain.models.ItemDomain
 import com.hh.testapponlineshop.domain.usecases.LoadItemsUseCase
-import com.hh.testapponlineshop.domain.usecases.UpdateUserFavouriteList
+import com.hh.testapponlineshop.domain.usecases.UpdateUserUseCase
 import com.hh.testapponlineshop.models.ItemUI
 import com.hh.testapponlineshop.models.toUi
 import kotlinx.coroutines.launch
 
-class CatalogViewModel(private val loadItemsUseCase: LoadItemsUseCase, private val session: Session, private val updateUserFavouriteList: UpdateUserFavouriteList) : ViewModel()
+class CatalogViewModel(private val loadItemsUseCase: LoadItemsUseCase, private val session: Session, private val updateUserFavouriteList: UpdateUserUseCase) : ViewModel()
 {
     private val _items: MutableLiveData<List<ItemDomain>> = MutableLiveData()
     val items: LiveData<List<ItemDomain>>

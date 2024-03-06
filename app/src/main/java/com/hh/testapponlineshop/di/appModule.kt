@@ -1,8 +1,6 @@
 package com.hh.testapponlineshop.di
 
 import com.hh.testapponlineshop.Session
-import com.hh.testapponlineshop.data.storage.AppDatabase
-import com.hh.testapponlineshop.data.storage.roomstorage.item.ItemDao
 import com.hh.testapponlineshop.viewModels.CatalogItemInfoViewModel
 import com.hh.testapponlineshop.viewModels.CatalogViewModel
 import com.hh.testapponlineshop.viewModels.FavouriteListViewModel
@@ -22,12 +20,12 @@ val appModule = module {
         CatalogViewModel(loadItemsUseCase = get(), session = get(), updateUserFavouriteList = get())
     }
     viewModel<FavouriteListViewModel> {
-        FavouriteListViewModel(session = get(), loadFavouriteItemsUseCase = get(), updateUserFavouriteList = get())
+        FavouriteListViewModel(session = get(), loadFavouriteItemsUseCase = get(), updateUserUseCase = get())
     }
     viewModel<ProfileViewModel> {
         ProfileViewModel(session = get(), loadFavouriteItemsUseCase = get(), deleteUserUseCase = get())
     }
     viewModel<CatalogItemInfoViewModel> {
-        CatalogItemInfoViewModel(session = get(), updateUserFavouriteList = get())
+        CatalogItemInfoViewModel(session = get(), updateUserUseCase = get())
     }
 }

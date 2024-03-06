@@ -1,12 +1,12 @@
 package com.hh.testapponlineshop.data.repository
 
-import com.hh.testapponlineshop.data.storage.interfaces.ReadWriteUserStorage
+import com.hh.testapponlineshop.data.storage.interfaces.IReadableWritableUserStorage
 import com.hh.testapponlineshop.domain.models.UserDomain
 import com.hh.testapponlineshop.domain.repository.UserRepository
 import kotlinx.coroutines.flow.Flow
 import java.util.UUID
 
-class UserRepositoryImpl(private val writableItemStorage: ReadWriteUserStorage) : UserRepository
+class UserRepositoryImpl(private val writableItemStorage: IReadableWritableUserStorage) : UserRepository
 {
     override suspend fun getUsers(): Flow<List<UserDomain>>
     {
@@ -35,7 +35,7 @@ class UserRepositoryImpl(private val writableItemStorage: ReadWriteUserStorage) 
 
     override suspend fun updateUser(user: UserDomain): Flow<Unit>
     {
-        return writableItemStorage.updateUserFavourites(user)
+        return writableItemStorage.updateUser(user)
     }
 
     override suspend fun deleteUser(user: UserDomain): Flow<Unit>

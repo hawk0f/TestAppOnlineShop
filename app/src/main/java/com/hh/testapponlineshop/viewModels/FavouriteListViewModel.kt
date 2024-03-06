@@ -6,12 +6,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.hh.testapponlineshop.Session
 import com.hh.testapponlineshop.domain.usecases.LoadFavouriteItemsUseCase
-import com.hh.testapponlineshop.domain.usecases.UpdateUserFavouriteList
+import com.hh.testapponlineshop.domain.usecases.UpdateUserUseCase
 import com.hh.testapponlineshop.models.ItemUI
 import com.hh.testapponlineshop.models.toUi
 import kotlinx.coroutines.launch
 
-class FavouriteListViewModel(private val session: Session, private val loadFavouriteItemsUseCase: LoadFavouriteItemsUseCase, private val updateUserFavouriteList: UpdateUserFavouriteList) : ViewModel()
+class FavouriteListViewModel(private val session: Session, private val loadFavouriteItemsUseCase: LoadFavouriteItemsUseCase, private val updateUserUseCase: UpdateUserUseCase) : ViewModel()
 {
     private val _itemsUi: MutableLiveData<List<ItemUI>?> = MutableLiveData()
     val itemsUi: LiveData<List<ItemUI>?>
@@ -43,7 +43,7 @@ class FavouriteListViewModel(private val session: Session, private val loadFavou
     {
         session.getCurrentUser().favourites = session.getCurrentUser().favourites.minus(item.id.toString())
         viewModelScope.launch {
-            updateUserFavouriteList.execute(session.getCurrentUser()).collect {
+            updateUserUseCase.execute(session.getCurrentUser()).collect {
                 val items = _itemsUi.value!!.minus(item)
                 _itemsUi.value = items
             }
